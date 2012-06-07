@@ -39,8 +39,8 @@ int main() {
 
     for (int i = 0; i < 16; i++) {
         sf::IntRect rec(i*24, 376, 24, 24);
-        a.addFrame("myanim", rec, 120);
-        a2.addFrame("myanim", rec, 30);
+        a.addFrame("myanim", rec, 1);
+        a2.addFrame("myanim", rec, 150);
     }
     a.playanimation("myanim");
     a2.playanimation("myanim");
@@ -54,25 +54,26 @@ int main() {
 			}
         }
 
+        //Updating animation state
         a.update();
         a2.update();
-
-        for (auto it = sprites.begin(); it != sprites.end(); it++ ) {
-            (*it)->update();
+        for (auto sprite : sprites) {
+            sprite->update();
         }
 
         App.Clear();
+        //Drawing
         App.Draw(a.getDrawable());
         App.Draw(a2.getDrawable());
-        for (auto it = sprites.begin(); it != sprites.end(); it++ ) {
-            App.Draw((*it)->getDrawable());
+        for (auto sprite : sprites) {
+            App.Draw(sprite->getDrawable());
         }
 
         App.Display();
     }
 
-    for (auto it = sprites.begin(); it != sprites.end(); it++ ) {
-        delete *it;
+    for (auto sprite : sprites) {
+        delete sprite;
     }
 
     App.Close();
