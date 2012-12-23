@@ -1,0 +1,15 @@
+CPPFLAGS= -I/home/greg/devpt/libs/SFML2/include 
+LDFLAGS= -L/home/greg/devpt/libs/SFML2/lib -lsfml-system -lsfml-window -lsfml-graphics
+
+CXXFLAGS= -g -Wall -Wextra -std=c++0x
+
+OBJS=Animated.o main.o
+NAME=SFMLSandbox
+
+all:$(NAME)
+
+$(NAME):$(OBJS)
+	$(CXX) $(OBJS) -o $(NAME) $(LDFLAGS)
+
+clean:
+	del $(NAME) $(OBJS)
