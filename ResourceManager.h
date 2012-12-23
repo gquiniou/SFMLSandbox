@@ -8,7 +8,7 @@
 #ifndef RESOURCEMANAGER_H_
 #define RESOURCEMANAGER_H_
 
-#include <SFML/graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
 #include <map>
@@ -33,7 +33,7 @@ public:
 		if (it == textures.end()) {
 			std::unique_ptr<sf::Texture> temp(new sf::Texture);
 			sf::Texture *tex = temp.get();
-			if (tex->LoadFromFile(filename)) {
+			if (tex->loadFromFile(filename)) {
 				textures.insert(std::pair<std::string, std::unique_ptr<sf::Texture>>(filename, std::move(temp)));
 				return tex;
 			} else {

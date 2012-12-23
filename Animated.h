@@ -16,8 +16,10 @@
 
 struct frame {
     sf::IntRect rect;
-    unsigned int duration;
-    frame(sf::IntRect r, unsigned int d) : rect(r), duration(d) {}
+    sf::Time duration;
+    frame(sf::IntRect r, unsigned int d) : rect(r) {
+	duration = sf::milliseconds(d);
+    }
 };
 typedef std::vector<std::unique_ptr<struct frame>>  framevector;
 typedef std::map<std::string,std::unique_ptr<framevector>> animationmap;

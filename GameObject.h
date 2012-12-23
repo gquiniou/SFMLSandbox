@@ -28,12 +28,12 @@ public:
 	}
 
 	sf::Vector2f getCenter() {
-		sf::FloatRect r = sprite.GetGlobalBounds();
-		return sf::Vector2f(r.Left + r.Height /2, r.Top + r.Height / 2);
+		sf::FloatRect r = sprite.getGlobalBounds();
+		return sf::Vector2f(r.left + r.height /2, r.top + r.height / 2);
 	}
 
 	sf::FloatRect getRect() const {
-		return sprite.GetGlobalBounds();
+		return sprite.getGlobalBounds();
 	}
 
 	bool destroyRequest() {

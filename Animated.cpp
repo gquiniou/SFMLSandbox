@@ -20,14 +20,14 @@ Animated::~Animated() {
 void Animated::update() {
     frame *current = (*currentframe).get();
     //std::cout <<clock.GetElapsedTime() <<std::endl;
-    if (clock.GetElapsedTime() >= current->duration) {
+    if (clock.getElapsedTime() >= current->duration) {
         currentframe++;
         if (currentframe == std::end(*currentanim))
             currentframe = std::begin(*currentanim);
         current = (*currentframe).get();
-        clock.Reset();
+        clock.restart();
         //std::cout << current->rect << std::endl;
-        sprite.SetTextureRect(current->rect);
+        sprite.setTextureRect(current->rect);
         //std::cout << "The distance is: " << distance(first,last) << endl;
 
     }
@@ -45,7 +45,7 @@ void Animated::playanimation(std::string animname) {
     } else {
         currentframe = it->second.get()->begin();
         currentanim = it->second.get();
-        clock.Reset();
+        clock.restart();
     }
     //sprite.SetPosition(100,100);
 }

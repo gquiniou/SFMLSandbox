@@ -16,14 +16,14 @@
 int main() {
 
     sf::RenderWindow App(sf::VideoMode(800, 600, 32), "SFML Breakout");
-	App.EnableVerticalSync(true);
+	App.setVerticalSyncEnabled(true);
 
     sf::Sprite s;
-    s.SetTexture(*game::ResourceManager::getTexture("breakout_sprites.png"));
+    s.setTexture(*game::ResourceManager::getTexture("breakout_sprites.png"));
     Animated a(s);
-    a.getDrawable().SetPosition(100,100);
+    a.getDrawable().setPosition(100,100);
     Animated a2(s);
-    a2.getDrawable().SetPosition(100,130);
+    a2.getDrawable().setPosition(100,130);
 
     std::vector<Animated *> sprites;
     for (int i = 0; i < 20; i++) {
@@ -33,7 +33,7 @@ int main() {
             an->addFrame("myanim", rec, 60);
         }
         an->playanimation("myanim",i);
-        an->getDrawable().SetPosition(200, i*24);
+        an->getDrawable().setPosition(200, i*24);
         sprites.push_back(an);
     }
 
@@ -45,11 +45,11 @@ int main() {
     a.playanimation("myanim");
     a2.playanimation("myanim");
 
-	while (App.IsOpened()) {
+	while (App.isOpen()) {
 
 		sf::Event Event;
-		while (App.PollEvent(Event)) {
-			if ((Event.Type == sf::Event::Closed) || ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Keyboard::Escape))) {
+		while (App.pollEvent(Event)) {
+			if ((Event.type == sf::Event::Closed) || ((Event.type == sf::Event::KeyPressed) && (Event.key.code == sf::Keyboard::Escape))) {
 				return 0;
 			}
         }
@@ -61,22 +61,22 @@ int main() {
             sprite->update();
         }
 
-        App.Clear();
+        App.clear();
         //Drawing
-        App.Draw(a.getDrawable());
-        App.Draw(a2.getDrawable());
+        App.draw(a.getDrawable());
+        App.draw(a2.getDrawable());
         for (auto sprite : sprites) {
-            App.Draw(sprite->getDrawable());
+            App.draw(sprite->getDrawable());
         }
 
-        App.Display();
+        App.display();
     }
 
     for (auto sprite : sprites) {
         delete sprite;
     }
 
-    App.Close();
+    App.close();
     return 0;
 }
 
