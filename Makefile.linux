@@ -1,5 +1,5 @@
-CPPFLAGS= -I/home/greg/devpt/libs/SFML2/include 
-LDFLAGS= -L/home/greg/devpt/libs/SFML2/lib -lsfml-system -lsfml-window -lsfml-graphics
+#CPPFLAGS= -I/home/greg/devpt/libs/SFML2/include 
+LDFLAGS=  -lsfml-system -lsfml-window -lsfml-graphics
 
 CXXFLAGS= -g -Wall -Wextra -std=c++0x
 
