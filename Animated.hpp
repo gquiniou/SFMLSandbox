@@ -15,31 +15,28 @@
 #include <map>
 
 struct frame {
-    sf::IntRect rect;
-    sf::Time duration;
-    frame(sf::IntRect r, unsigned int d) : rect(r) {
-	duration = sf::milliseconds(d);
-    }
+  sf::IntRect rect;
+  sf::Time duration;
+  frame(sf::IntRect r, unsigned int d) : rect(r), duration(sf::milliseconds(d)) {}
 };
-typedef std::vector<std::unique_ptr<struct frame>>  framevector;
+typedef std::vector<std::unique_ptr<frame>>  framevector;
 typedef std::map<std::string,std::unique_ptr<framevector>> animationmap;
 
 class Animated : public GameObject {
 public:
-    Animated(sf::Sprite _sprite) : GameObject(_sprite) {}
-    virtual ~Animated();
-    void addFrame(std::string, sf::IntRect, int);
-    void playanimation(std::string);
-    void playanimation(std::string, int);
-    virtual void update();
+  Animated(sf::Sprite _sprite) : GameObject(_sprite) {}
+  virtual ~Animated();
+  void addFrame(std::string, sf::IntRect, int);
+  void playanimation(std::string);
+  void playanimation(std::string, int);
+  virtual void update();
+
 private:
-    //std::string currentanim;
-    //int currentframe;
-    int remainingtime;
-    framevector::iterator currentframe;
-    framevector *currentanim;
-    animationmap anims;
-    sf::Clock clock;
+  int remainingtime;
+  framevector::iterator currentframe;
+  framevector *currentanim;
+  animationmap anims;
+  sf::Clock clock;
 };
 
 #endif	/* ANIMATED_H */
