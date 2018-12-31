@@ -20,29 +20,26 @@ namespace game {
   
   class ResourceManager {
   public:
-    //ResourceManager();
-
-    //virtual ~ResourceManager();
     
-    static sf::Texture *getTexture(const std::string filename) {
+    static sf::Texture *getTexture(const std::string filename) { 
       static TextureMap textures;
+
+      std::cout << "getTexture called " << filename << std::endl;
 
       TextureMap::iterator it = textures.find(filename);
       if (it == textures.end()) {
-	std::unique_ptr<sf::Texture> temp(new sf::Texture); 
-	if (temp->loadFromFile(filename)) {
-	  auto x = textures.insert(it, std::pair<std::string, std::unique_ptr<sf::Texture>>(filename, std::move(temp))); 
-	  return &(*(*x).second); 
-	} else {
-	  std::cout << "could not load texture" << std::endl;
-	}
+	      std::unique_ptr<sf::Texture> temp(new sf::Texture); 
+	      if (temp->loadFromFile(filename)) {
+          textures.emplace(filename, std::move(temp));
+          return textures[filename].get();
+	      } else {
+	        std::cout << "could not load texture" << std::endl;
+	      }
       } else {
-	return it->second.get();
+	      return it->second.get();
       }
       return nullptr;
     }
-
   };
-
 } /* namespace game */
 #endif /* RESOURCEMANAGER_H_ */
