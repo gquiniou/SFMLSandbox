@@ -1,3 +1,6 @@
 *~
 *.o
 SFMLSandbox
+build/
+cmake-build-debug/
+.idea/
