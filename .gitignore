@@ -4,3 +4,8 @@ SFMLSandbox
 build/
 cmake-build-debug/
 .idea/
+CMakeFiles
+CMakeCache.txt
+imgui/*
+!imgui/*.cpp 
+!imgui/*.h
